@@ -12,3 +12,41 @@ const images = [
         alt: 'Group of Horses Running',
     },
 ];
+
+const galleryRef = document.querySelector('#gallery');
+// console.log(galleryRef);
+
+const urlRef = images.map(el => el.url);
+const altRef = images.map(el => el.alt);
+// console.log(urlRef);
+// console.log(altRef);
+
+const imageRefArr = [];
+const arrToString = imageRefArr.join(' ');
+// console.log(arrToString)
+
+const imageRef = function (url, alt) { 
+    for (let i = 0; i < url.length; i += 1) {
+        const image = document.createElement('img');
+        image.setAttribute('src', `${url[i]}`);
+        image.setAttribute('alt', `${alt[i]}`);
+        imageRefArr.push(image);
+    }
+}
+
+imageRef(urlRef, altRef);
+// console.log(imageRefArr)
+
+const a = imageRefArr.map(el => `<li><img class="size" src="${el['src']}" alt="${el.alt}"></li>`).join(' ');
+// console.log(a)
+galleryRef.insertAdjacentHTML('afterbegin' , a);
+
+// galleryRef.append(...imageRefArr) // так работает
+
+// const image1 = document.createElement('img');
+// image1.setAttribute('src', `${urlRef[0]}`);
+// image1.setAttribute('alt', `${altRef[0]}`);
+// image1.setAttribute('src', `${images.url}`); // не работает - выдает ошибку
+// image1.setAttribute('alt', `${images.alt}`); // не работает - alt="undefined"
+
+
